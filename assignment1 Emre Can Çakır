@@ -1,0 +1,191 @@
+public abstract class Employee extends Person {
+
+    // Do not change anything in this class
+
+    protected int yearOfSeniority;
+
+
+    public Employee() {
+
+    }
+    public Employee(String name, int yearOfSeniority) {
+
+        this.name = name;
+        this.yearOfSeniority = yearOfSeniority;
+        number++;
+    }
+
+
+}
+
+public abstract class Person {
+
+    // Do not change anything in this class
+
+    protected String name;
+    public static int number;
+
+    public abstract double calculateSalary();
+}
+
+public class SoftwareDeveloper extends Employee {
+
+    protected Department department;
+    protected String projectName;
+
+
+    // Do not change anything in this method
+    public static int getNumber() {
+        return number;
+    }
+
+    // Fill in the blanks. Do not forget to use the keyword "super"
+    public SoftwareDeveloper(String name, int yearOfSeniority, String projectName, Department department) {
+        super("Tom", 10);
+        this.name=name;
+        this.department=department;
+        this.yearOfSeniority=yearOfSeniority;
+        this.projectName=projectName;
+
+    }
+
+    // Erase the content. Fill in the blanks. If yearOfSeniority and projectName are equal, it returns true
+    @Override
+    public boolean equals(Object obj) {
+        if(obj.equals(yearOfSeniority)){
+            return true;
+        }else if(obj.equals(projectName)){
+            return true;
+        }else
+        return false;
+    }
+
+    // Erase the content.
+    // Fill in the blanks. Format: [name]@[departmentName]-P:[projectName]-S:[yearOfSeniority]
+    // For example: Jim@Android-P:ElectroAndroid-S:7
+    @Override
+    public String toString() {
+
+        return SoftwareDeveloper.this.name+"@"+department.getName()+"-P:"+SoftwareDeveloper.this.projectName+"-S:"+SoftwareDeveloper.this.yearOfSeniority;
+
+    }
+
+    //Erase the content. Fill in the blanks. It calculates salary of employee.
+    //Formula is 2000 +  30 * (yearOfSeniority^2)
+    @Override
+    public double calculateSalary() {
+
+        return Math.pow ((SoftwareDeveloper.super.yearOfSeniority),2)*30 +2000;
+    }
+}
+
+public class SoftwareDevelopment extends Department {
+
+
+    public SoftwareDevelopment(String name, int numberOfWorker) {
+
+        super(name,numberOfWorker);
+
+
+    }
+    // Erase the content. Fill in the blanks. It returns number.
+    public static int getNumber() {
+
+        return 4;
+
+    }
+
+}
+
+public class Test {
+
+    // Do not change anything in this class
+
+    public static void main(String[] args) {
+
+        int score = 0;
+
+        Department d1 = new SoftwareDevelopment("Android", 30);
+        Department d2 = new SoftwareDevelopment("Java", 25);
+        Department d3 = new SoftwareDevelopment(".NET", 27);
+        Department d4 = new SoftwareDevelopment("IOS", 27);
+
+        SoftwareDeveloper s1 = new SoftwareDeveloper("Bob", 8,"ElektroAndroid",d1);
+        SoftwareDeveloper s2 = new SoftwareDeveloper("Jane", 3, "Engineering Unit Converter",d3);
+        SoftwareDeveloper s3 = new SoftwareDeveloper("David", 4, "Library Otomation",d2);
+        SoftwareDeveloper s4 = new SoftwareDeveloper("Bill", 7,  "Calculator",d4);
+        SoftwareDeveloper s5 = new SoftwareDeveloper("John", 8,"ElektroAndroid",d1);
+        SoftwareDeveloper s6 = new SoftwareDeveloper("Tom", 10, "Calculator",d4);
+        SoftwareDeveloper s7 = new SoftwareDeveloper("Michael", 9, "Web Design",d3);
+
+        if (SoftwareDeveloper.getNumber() == 7) {
+            score += 10;
+        }
+        if (SoftwareDevelopment.getNumber() == 4) {
+            score += 10;
+        }
+        if (s1.equals(s5)) {
+            score += 20;
+        }
+        if (s3.toString().equals("David@Java-P:Library Otomation-S:4")) {
+            score += 15;
+        }
+        if (d3.equals(d3)) {
+            score += 20;
+        }
+        if (d3.toString().equals(".NET/number of worker : 27")) {
+            score += 15;
+        }
+        if (s6.calculateSalary() == 5000.0) {
+            score += 10;
+        }
+
+        System.out.println("your grade is " + score);
+
+    }
+
+}
+
+public class Department {
+
+    protected String name;
+    protected int numberOfWorker;
+
+    public static int number;
+
+
+    // Do not change anything in this method
+    public String getName() {
+        return name;
+    }
+
+
+    // Fill in the blanks.
+    public Department(String name, int numberOfEmployee) {
+        this.name=name;
+        this.numberOfWorker= numberOfEmployee;
+
+    }
+    // Erase the content. Fill in the blanks. If name and numberOfWorker are equal, it returns true
+    @Override
+    public boolean equals(Object obj) {
+         if(obj.equals(name)){
+             return true;
+         }else if (obj.equals(numberOfWorker)){
+             return true;
+         }else
+        return false;
+
+    }
+    // Erase the content. Fill in the blanks. Format: [name]/[numberOfWorker]
+    // For example: Android/number of worker : 30
+    @Override
+    public String toString() {
+
+        return  Department.this.name +"/number of worker : "+ Department.this.numberOfWorker;
+
+    }
+
+
+}
+
